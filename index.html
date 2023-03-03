@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<style>
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.caret::before {
+  content: "*";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+
+
+</style>
+</head>
+<body>
+<h2>Tree View</h2>
+
+<h3>This is my Course.</h3>
+<ul id="myUL">
+  <li style="font-size: 22px; font-weight: 900;" id="div1" class="div"><span class="caret">Full stack Java Developer</span>
+    <ul class="nested">
+      <li  style="font-size: 17px;font-weight: 500; ">Fruented Developer</li>
+      <li  style="font-size: 17px;  font-weight: 500;">Backend Developer</li>
+      <li  style="font-size: 17px; font-weight: 500;">DataBase managment Developer</li><br>
+      <li><span class="caret" >Fruented Developer</span>
+        <ul class="nested">
+          <li  style="font-size: 17px; font-weight: 500;">HTML</li>
+          <li  style="font-size: 17px; font-weight: 500;">CSS</li>
+          <li  style="font-size: 17px; font-weight: 500;">Javascript</li>
+          <li  style="font-size: 17px; font-weight: 500;">Jquery</li><br>
+          <li><span class="caret">Backend Developer</span>
+            <ul class="nested">
+              <li  style="font-size: 17px;  font-weight: 500;"> Java </li>
+              <li  style="font-size: 17px;  font-weight: 500;"> jdbc</li>
+              <li  style="font-size: 17px;  font-weight: 500;">Servlet & Jsp</li>
+                <li  style="font-size: 17px; font-weight: 500;">Hibernate</li>
+              <li  style="font-size: 17px;  font-weight: 500;">Core Spring</li>
+                <li  style="font-size: 17px;  font-weight: 500;">Spring Boot</li>
+            </ul>
+          </li>
+        </ul>
+      </li>  
+    </ul>
+  </li>
+</ul>
+<div>
+    <ul>
+        <li></li>
+    </ul>
+</div>
+<button>Remove All Tree View MenuBar</button>
+<button id="btn1">Add menu</button>
+<script>
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+</script>
+<script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("#div1").remove();
+        $("ul").remove();
+      });
+    });
+    </script>
+
+<script>
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+        $("div").prepend("<ul> <li>*Full stack Java Developer <ul><li>Fruented Developer</li><li>Backend Developer</li><li>DataBase managment Developer</li><br> <li>*Fruented Developer  <ul><li>HTML</li> <li>CSS</li> <li>Javascript</li> <li>Jquery</li><br> <li>*Backend Developer</span> <ul> <li  > Java </li><li  > Java </li> <li  > jdbc</li> <li  >Servlet & Jsp</li> <li >Hibernate</li> <li  >Core Spring</li> <li  >Spring Boot</li></ul></li></ul>  </li>  </ul> </li></ul>");
+      });
+    
+    });
+    </script>
+
+</body>
+</html>
